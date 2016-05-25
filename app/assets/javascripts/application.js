@@ -12,5 +12,17 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
 //= require turbolinks
-//= require_tree .
+//= require addressModal
+//= require d3
+//= require map
+//= require stripe
+//= require websocket
+//= require websocket_rails/main
+//= require statistics
+//= require d3_pie
+//= require d3_map
+//= require d3_bar
+//= require disaster
+//= require charities

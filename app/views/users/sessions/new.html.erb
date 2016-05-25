@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-offset-2 col-lg-8 sign-in">
+      <img src="/assets/logo-tagline-712029fa759a9065f629c28253e5552ce5d184e157d96ba0efe3191d3449c447.svg" class="sign-in-image center-block" alt="Firs+Aid Logo"/>
+      <h2 class="text-center">Log in</h2>
+      <div class="col-lg-5 regular-login">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: 'form') do |f| %>
+          <div class="form-group">
+            <%= f.label :email %>
+            <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+          </div>
+
+          <% if devise_mapping.rememberable? -%>
+            <div class="checkbox">
+              <label for="remember_me">
+              <input type="hidden" name="user[remember_me] value="0" ">
+              <input class="checkbox" type="checkbox" value="1" name="user[remember_me]" id="user_remember_me"> Remember Me
+              </label>
+            </div>
+          <% end -%>
+
+          <div class="text-center">
+            <%= f.submit "Log In", class: 'btn btn-success', id: 'sign-in-button' %>
+          </div>
+        <% end %>
+
+      </div>
+      <div class="col-lg-2 login-separator text-center">
+        <h1>or</h1>
+      </div>
+      <div class="col-lg-5 facebook-login text-center">
+        <a href="/users/auth/facebook"><button class="btn btn-primary login"><i class="fa fa-facebook"></i>Login with Facebook</button></a>
+      </div>
+      <div class="col-lg-12 links">
+        <%= render "users/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>

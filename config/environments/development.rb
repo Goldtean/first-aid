@@ -8,13 +8,27 @@ Rails.application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
-
+  # remove rack lock middleware for websocket---matt
+  config.middleware.delete Rack::Lock
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  # to deliver to the browser instead of email
+  # config.action_mailer.delivery_method = :letter_opener
+  # Configure smtp email
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'just90.justhost.com',
+    port:                 465,
+    domain:               'first-aid.online',
+    user_name:            ENV['EMAIL_ADDRESS'],
+    password:             ENV['EMAIL_SECRET'],
+    authentication:       :login,
+    tls:                  true
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -25,7 +39,7 @@ Rails.application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  config.assets.debug = true
+  config.assets.debug = false
 
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
@@ -35,6 +49,8 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
+
+  config.gem 'whenever', :lib => false, :source => 'http://gems.github.com'
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

@@ -1,0 +1,31 @@
+#nearby_chars Charities Near Disaster
+%div{class: 'charity-wrapper'}
+  - @charities.each do |charity|
+    %a.charity_title{href: "/disasters/#{@disaster.id}/charities/#{charity.id}"}= charity.title
+    %br
+    - if current_user
+      %p.charity-address= charity.street_address
+      %p.charity-city
+        = "#{charity.city},"
+        = charity.state
+        = charity.zip_code
+      %p= charity.phone
+      - @charity = charity
+      = render "stripe_form"
+    - else
+      = charity.street_address
+      = charity.city
+      = charity.state
+      .charity_phone
+        = charity.phone
+    %br
+
+
+
+
+
+
+
+
+
+
